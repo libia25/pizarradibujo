@@ -1,0 +1,1 @@
+Atajos del teclado: Ctrl+Z para deshacer y Ctrl+Y para rehacer.
