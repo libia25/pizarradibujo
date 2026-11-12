@@ -1,0 +1,1 @@
+Colores disponibles: rojo, azul, verde, amarillo y negro.
