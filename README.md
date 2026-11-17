@@ -1,7 +1,7 @@
 # Mi producto
 
-> **Alumno:** cambia este título por el nombre de tu producto y esta línea por una frase que lo explique.
-> Proyecto n.º __ del catálogo · Sitio de referencia: __ · [PRD](docs/PRD.md) · URL publicada: __
+> **Alumno:** Pizarra de Dibujo Digital (Lumina). Aplicación web colaborativa e interactiva en tiempo real para dibujar, esquematizar y compartir ideas de forma fluida.
+> Proyecto n.º 27 Libia Berrío 27.545.345 del catálogo · Sitio de referencia:Excalidraw  · [PRD](docs/PRD.md) · URL publicada: https://excalidraw.com
 
 Plantilla del proyecto de **Lenguaje de Programación · 2026**.
 La guía completa de la actividad está en el repositorio del curso:
