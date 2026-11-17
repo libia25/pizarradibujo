@@ -6,54 +6,58 @@
 
 | Campo | Valor |
 | --- | --- |
-| Alumno | |
-| Proyecto n.º | |
-| Sitio de referencia | |
+| Alumno |libia berrios .C.I:27.545.345 |
+| Proyecto n.º |27 |
+| Sitio de referencia |Excalidraw |
 | Compañero revisor | |
 | URL desplegada | (se completa en el Sprint 5) |
 
 ## 1. Problema
 
-¿Qué problema real resuelve y a quién le duele? (3 a 5 líneas)
+Falta de herramientas de dibujo colaborativas,ligeras y accesibles en la web que permiten a estudiantes y equipos de trabajo plasmar ideas visuales, esquemas y diagramas rápidamente desde cualquier dispositivo sin fricciones ni configuraciones complejas.
+
 
 ## 2. Usuarios
 
-- **Usuario principal:** quién es, qué necesita, desde qué dispositivo entra.
-- **Usuario secundario:**
+- **Usuario principal:**Estudiantes, niños, desarrolladores que necesitan realizar bocetos rápidos de arquitecturas de software, flujos o notas visuales desde laptops o PCs de escritorio ..
+- **Usuario secundario:**Equipos de trabajo para lluvias de ideas visuales.
+
 
 ## 3. Objetivo y métrica de éxito
 
-Ejemplo: «Un bodeguero registra una venta en menos de 10 segundos».
+«Un usuario dibujó y guarda un trazo en el lienzo en menos de 15 segundos .».
 
 ## 4. Alcance del MVP
 
 Entre 5 y 8 funcionalidades que SÍ entran este semestre.
 
-1.
-2.
-3.
+1 . Lienzo interactivo web para trazos libres con selección de color y grosor.
+2 . Guardado de pizarras y proyectos en la base de datos relacional.
+3 . Herramienta de borrador y limpieza del lienzo.
+4 . Exportación del dibujo a imagen (PNG/JPEG).
+5 . Control de versiones con Git y Pull Requests.
+6 . Autenticación básica de usuarios.
 
 ### Funcionalidades → carpetas de `src/` (screaming architecture)
 
 Cada funcionalidad del alcance será una carpeta en `src/`. Nómbralas en inglés y en plural.
 
 | Funcionalidad | Carpeta |
-| --- | --- |
-| Ejemplo: ventas | `src/sales` |
-| | |
+| pizarras |  ` src/boards `  |
+| trazos / dibujos |  ` src/dibujos `  |
+| usuarios |  ` src/users `  |
 
 ## 5. Fuera de alcance
 
-Lo que NO vas a construir.
-
--
+Salas de chat de voz o videollamada.
+- Sincronización multiusuario simultánea en tiempo - real con WebSockets complejos.
 
 ## 6. Requisitos funcionales
 
-| ID | Requisito | Prioridad (alta, media, baja) |
-| --- | --- | --- |
-| RF-01 | | |
-| RF-02 | | |
+| identificación | Requisito | Prioridad (alta, media, baja) |
+| RF-01 | Crear, editar y guardar nuevas pizarras de dibujo. | Alta |
+| RF-02 | Registrar trazos fluidos con diferentes grosores. | Alta |
+| RF-03 | Exportar el lienzo activo como imagen descargable. | Medios |
 
 ## 7. Requisitos no funcionales
 
@@ -67,27 +71,40 @@ Lo que NO vas a construir.
 Diagrama entidad-relación y tablas PostgreSQL con tipos, claves y restricciones.
 GitHub dibuja diagramas Mermaid; edita este ejemplo:
 
-```mermaid
-erDiagram
+``` mermaid
+Diagrama
   CLIENTE ||--o{ PEDIDO : hace
   PEDIDO ||--|{ LINEA_PEDIDO : contiene
   PRODUCTO ||--o{ LINEA_PEDIDO : aparece_en
   CLIENTE {
+  USUARIO ||--o{ PIZARRA : crea
+  PIZARRA ||--|{ TRAZO : contiene
+  USUARIO {
     int id PK
-    text nombre
-    text telefono
+    texto nombre
+    texto teléfono
+correo electrónico     de texto
   }
   PEDIDO {
+  PIZARRA {
     int id PK
     int cliente_id FK
+    int usuario_id FK
+    texto título
     timestamptz creado_en
+  }
+  TRAZO {
+    int id PK
+    int pizarra_id FK
+    texto coordenadas_json
+    color del texto
   }
 ```
 
 ## 9. Reto técnico distintivo
 
-El que te tocó en el catálogo y cómo piensas resolverlo.
+El reto técnico seleccionado es la ** Pila de deshacer y rehacer (Undo-Redo) combinada con la exportación a PNG ** , implementando una estructura lineal propia de pila en ` src/shared/structures/ ` para administrar el historial de trazos en memoria de forma eficiente antes de vaciarlo al lienzo o exportarlo como imagen final.
 
 ## 10. Riesgos y preguntas abiertas
 
--
+- Asegurar el rendimiento óptimo del renderizado en lienzo al acumular una gran cantidad de trazos complejos.
